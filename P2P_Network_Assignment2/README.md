@@ -1,3 +1,4 @@
+#B22CS070 B22CS064
 # Project Description
 ### Link to repo - https://github.com/Bansal0527/Discrete-event-simulator
 This project implements a distributed task execution simulation using the **OMNeT++ Discrete Event Simulator**. The simulation models a network of client and server nodes where clients divide a task (e.g., finding the maximum element in an array) into subtasks and distribute them to a subset of servers. The system incorporates **fault tolerance** by considering the majority result as valid and includes a **gossip protocol** for clients to share server performance scores.
