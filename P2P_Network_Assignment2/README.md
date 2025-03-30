@@ -1,27 +1,32 @@
-Overview of the Problem:
-To mimic remote program execution, use the OMNeT++ Discrete Event Simulator. Each job is split up into n subtasks and delivered to n/2 + 1 servers. The majority's response will be regarded as legitimate. 
-Server is requested to carry out a basic operation, such as determining the number of vowels in the string. The client splits string into about n equal portions, where x/n ≥ 2.
+# Project Description
+### Link to repo - https://github.com/Bansal0527/Discrete-event-simulator
+This project implements a distributed task execution simulation using the **OMNeT++ Discrete Event Simulator**. The simulation models a network of client and server nodes where clients divide a task (e.g., finding the maximum element in an array) into subtasks and distribute them to a subset of servers. The system incorporates **fault tolerance** by considering the majority result as valid and includes a **gossip protocol** for clients to share server performance scores.
 
-Implementation:
-First we created a network architecture made up of clients and servers that are connected to one another to enable communication. Two simple modules Client and Server are initiated. The server module is configured
-with parameters like ‘totalServers’ and ‘totalClients’. And the client module has an additional parameter ‘res’ which stores the consolidated scores.
+## Key Features
 
-Code Explanation:
-1) Server.cc : This file contains declaration of the Server module. Server will perform task of
-counting vowels in the input string sent by the Client. Server may or may not respond
-honestly. Server will act maliciously randomly, we have implemented the logic when treeId%4 of
-message==serverId%4,it will act maliciously.
+### Network Setup
+- **Server Nodes**: Execute subtasks (e.g., finding the maximum element in a sub-array). Servers can act **honestly** (returning correct results) or **maliciously** (returning incorrect results). At most **n/4** servers behave maliciously for any task.
+- **Client Nodes**: Divide tasks into **n subtasks**, send each to **n/2 + 1** servers, aggregate results based on **majority voting**, and compute a final result. Clients also assign scores to servers and **gossip these scores** to other clients.
 
-3) Client.cc : This file contains declaration of the Client module. Firstly client will divide task
-into totalServers subtasks and then it will send the subtasks to totalServers / 2 +
-1 selected server. For Task 1, these servers will be selected randomly. For later tasks
-servers will be selected on the basis of scores assigned by clients calculated through
-implementation if previous tasks,giving zero for wrong and 1 for correct answer.
-Clients will also communicate these scores with each other. After this we execute the program
-again for second task.
+### Task Execution
+- The initial task is to **find the maximum element** in an array of integers.
+- The array is divided into **n roughly equal parts** (each with at least 2 elements), and each part is sent to **n/2 + 1 randomly selected servers**.
+- After the first round, clients use **gossip-derived server scores** to select the top **n/2 + 1 servers** for a second task round.
 
-Steps to execute the program:
-1) Open the project in Omnetpp
-2) Build and Execute the simulation in Omnetpp environment.
-2) Set Values of variables numServers and numClients in omnet.ini file
+### Gossip Protocol
+- Clients broadcast **server scores** after each task using a gossip message format: <self.timestamp>:<self.IP>:<self.Score#>
 
+- Messages are **forwarded to all peers** except the sender.
+- A mechanism prevents redundant forwarding using a **message log (ML)**.
+
+### Output
+- Servers log their **subtask results** to both the console and a file (**serverOutput.txt**).
+- Clients log **subtask results, consolidated task results, and gossip messages** to the console and individual files (**ClientX.txt** and **ClientX_gossip.txt**).
+
+### Topology
+- The **network topology** is maintained in a separate file (**topo.txt**), allowing **dynamic adjustment** of the number of servers (**n**) and clients (**m**).
+
+## Steps to Execute the Program
+1. Open the project in **OMNeT++**.
+2. Build and execute the simulation in the **OMNeT++ environment**.
+3. Set values of variables **numServers** and **numClients** in the **omnet.ini** file.
