@@ -1,0 +1,18 @@
+=== Server Output Log ===
+Simulation started at: 0
+==============================
+Server 0 initialized
+Server 1 initialized
+Server 2 initialized
+Honest Node Server 2 Output 87 on subtask 45 22 87 34  (SubtaskID: 0)
+Malicious Node Server 0 Output 77 on subtask 45 22 87 34  (SubtaskID: 0)
+Honest Node Server 0 Output 99 on subtask 56 12 99  (SubtaskID: 1)
+Malicious Node Server 1 Output 89 on subtask 56 12 99  (SubtaskID: 1)
+Malicious Node Server 2 Output 68 on subtask 23 67 78  (SubtaskID: 2)
+Honest Node Server 1 Output 78 on subtask 23 67 78  (SubtaskID: 2)
+Honest Node Server 1 Output 87 on subtask 45 22 87 34  (SubtaskID: 0)
+Honest Node Server 2 Output 87 on subtask 45 22 87 34  (SubtaskID: 0)
+Honest Node Server 2 Output 99 on subtask 56 12 99  (SubtaskID: 1)
+Honest Node Server 0 Output 99 on subtask 56 12 99  (SubtaskID: 1)
+Honest Node Server 1 Output 78 on subtask 23 67 78  (SubtaskID: 2)
+Malicious Node Server 2 Output 68 on subtask 23 67 78  (SubtaskID: 2)
